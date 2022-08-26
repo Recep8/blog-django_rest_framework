@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'article',
     'rest_framework',
     'rest_framework.authtoken',
+    'kullanici',
 ]
 
 MIDDLEWARE = [

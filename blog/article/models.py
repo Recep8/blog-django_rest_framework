@@ -7,6 +7,7 @@ class Article(models.Model):
     content = models.TextField(verbose_name="İçerik")
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
     upload_file = models.ImageField(upload_to="images/", null=True, blank=True)
+    tag = models.CharField(max_length=50, default="Deneme")
 
     def __str__(self):
         return self.title

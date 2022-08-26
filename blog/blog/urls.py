@@ -17,11 +17,17 @@ from django.contrib import admin
 from django.urls import re_path, include,path
 from rest_framework import routers
 from article import views as article
+from kullanici import views as register
 
 router = routers.DefaultRouter()
+router.register(r'users', article.UserViewSet)
+router.register(r'groups', article.GroupViewSet)
+
 
 urlpatterns = [
-    path('', article.index),
+    path('register/', include(router.urls)),
+    path('', article.index, name='index'),
     path('admin/', admin.site.urls),
     path('article/', article.article),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
