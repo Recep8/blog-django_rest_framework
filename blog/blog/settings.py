@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'kullanici',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,6 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "index"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

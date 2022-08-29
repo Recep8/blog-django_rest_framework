@@ -1,21 +1,21 @@
 {% extends 'layout.html' %}
 {% block body %}
 
-<h1 style="text-align:center">Articles</h1>
+<h1 style="text-align:center; color:red">Articles</h1>
 <br>
 <br>
 <div style="text-align:center">
     {% for d in date %}
-        {{ d.date }}
-    <br>
-    <br>
+     <p style="color:purple">   {{ d.date }} </p>
+
+    <button><a href="{% url 'addarticle' %}" >Add article</a></button>
     <br>
     <div>
         {% for i in input_text %}
         {% if d.date == i.created_date.date %}
             <h4 style="color:blue"><b>#{{ i.tag }}</b></h4>
-            <h4>{{ i.title }}</h4>
-            <h4>{{ i.author }}</h4>
+            <h4>Title: {{ i.title }}</h4>
+            <h4>Author: {{ i.author }}</h4>
             <h4>{{ i.upload_file }}</h4>
             <h4>{{ i.content }}</h4>
             <h4>{{ i.created_date }}</h4>

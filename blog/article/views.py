@@ -8,8 +8,7 @@ from rest_framework import permissions
 from .serializers import UserSerializer, GroupSerializer
 from django.contrib import messages
 from django.db.models.functions import TruncDate
-
-
+from .forms import AddArticleForm
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -56,4 +55,15 @@ def article(request):
     }
 
     return render(request, 'articles.html', context)
+
+def add_article(request):
+    context = {}
+
+    form = AddArticleForm(request.POST or None, request.FILES or None)
+
+    if form.is_valid():
+        form.save()
+
+    context['form']=form
+    return render(request, "addarticle.html", context)
 

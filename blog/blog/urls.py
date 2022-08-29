@@ -25,9 +25,12 @@ router.register(r'groups', article.GroupViewSet)
 
 
 urlpatterns = [
-    path('register/', include(router.urls)),
+    path('accounts/', include("django.contrib.auth.urls")),
+    path('user-list/', include(router.urls)),
     path('', article.index, name='index'),
     path('admin/', admin.site.urls),
     path('article/', article.article),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('register/', register.register, name="register"),
+    path('addarticle/', article.add_article),
 ]

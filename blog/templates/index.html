@@ -1,4 +1,10 @@
 {% extends 'layout.html' %}
 {% block body %}
-<h3>Welcome To R-Blog</h3>
+{% if user.is_authenticated %}
+<h2 style="text-align:center">Welcome Back {{ user.username }}</h2>
+{% else %}
+<h2 style="text-align:center">Welcome to R-log</h2>
+{% endif %}
+
+
 {% endblock body %}

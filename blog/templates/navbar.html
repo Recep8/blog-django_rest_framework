@@ -19,20 +19,24 @@
       <li class="active"><a href="{% url 'index' %}">Home Page</a></li>
       <li><a href="article/">Article</a></li>
       <li><a href="about/">About</a></li>
+        <li><a href="about/">Profile</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
 
         <li>
-      <form class="d-flex">
+      <form class="d-flex" style="margin-top:10px">
       <div style="display:flex" >
         <input class="form-control me-2" type="search" name="input_text" placeholder="Search" aria-label="Search" name="keyword">
         <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
       </form>
         </li>
-
-      <li><a href="register/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a> </li>
+      {% else %}
+      <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
     </ul>
   </div>
 </nav>

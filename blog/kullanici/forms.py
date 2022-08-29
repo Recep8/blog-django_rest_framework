@@ -1,20 +1,20 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=50, min_length=4, label='Username')
-    password = forms.CharField(max_length=25, min_length=5, label='Password', widget=forms.PasswordInput)
-    confirm = forms.CharField(max_length=20, label='Confirm Password', widget=forms.PasswordInput)
-    
-    def clean(self):
-        username = self.cleaned_data.get("username")
-        password = self.cleaned_data.get("password")
-        confirm = self.cleaned_data.get("confirm")
-        
-        if password and confirm and password != confirm:
-            raise forms.ValidationError("Passwords shoul be same")
-        
-        values = {
-            "username": username,
-            "password": password,
-        }
-        return values
+class RegisterForm(UserCreationForm):
+
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
