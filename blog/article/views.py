@@ -44,10 +44,12 @@ def article(request):
         articles = Article.objects.filter(Q(tag=input_text) | Q(title=input_text) | Q(author__username=input_text))
         dates = articles.annotate(date=TruncDate('created_date')).values('date')
         dates = dates.distinct()
+        dates = dates.order_by("-date")
     else:
         articles = Article.objects.all()
         dates = articles.annotate(date=TruncDate('created_date')).values('date')
         dates = dates.distinct()
+        dates = dates.order_by("-date")
 
     context={
             'input_text': articles,
@@ -65,5 +67,5 @@ def add_article(request):
         form.save()
 
     context['form']=form
-    return render(request, "addarticle.html", context)
+    return render(request, 'addarticle.html', context)
 

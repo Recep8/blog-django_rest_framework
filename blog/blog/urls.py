@@ -18,6 +18,8 @@ from django.urls import re_path, include,path
 from rest_framework import routers
 from article import views as article
 from kullanici import views as register
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'users', article.UserViewSet)
@@ -33,4 +35,4 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', register.register, name="register"),
     path('addarticle/', article.add_article),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

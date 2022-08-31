@@ -1,4 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
-
+<form action="/addarticle/" method="POST">
+    {% csrf_token %}
+<h3>Title</h3>{{ form.title }} <br>
+<h3>Author</h3>{{ form.author }} <br>
+<h3>Content</h3>{{ form.content }} <br>
+<h3>Media</h3>{{ form.upload_file }} <br>
+<h3>Tag</h3>{{ form.tag }} <br> <br> <br>
+<input type="submit" style="width:75px;" value="Add">
+</form>
 {% endblock body %}
