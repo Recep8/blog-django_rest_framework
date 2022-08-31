@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block body %}
+{% if user.is_authenticated %}
 <form action="/addarticle/" method="POST">
     {% csrf_token %}
 <h3>Title</h3>{{ form.title }} <br>
@@ -9,4 +10,7 @@
 <h3>Tag</h3>{{ form.tag }} <br> <br> <br>
 <input type="submit" style="width:75px;" value="Add">
 </form>
+{% else %}
+<h1 style="text-align:center">If you want add article, You must be logged in </h1>
+{% endif %}
 {% endblock body %}
