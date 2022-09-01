@@ -11,6 +11,7 @@ from django.db.models.functions import TruncDate
 from .forms import AddArticleForm
 
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -61,11 +62,26 @@ def article(request):
 def add_article(request):
     context = {}
 
-    form = AddArticleForm(request.POST or None, request.FILES or None)
+    form = AddArticleForm(request.POST or None, request.FILES or None,initial={'author': request.user})
 
     if form.is_valid():
         form.save()
+        messages.success(request,  "Ekleme başarılı")
+
 
     context['form']=form
     return render(request, 'addarticle.html', context)
+
+def delete_article(request):
+    Article.objects.filter(id=id).delete()
+
+
+def update_article(request):
+    my_model_serializer = ArticleSerializer(
+        instance=Article, data=validated_data)
+    if my_model_serializer.is_valid():
+        my_model_serializer.save()
+
+
+
 

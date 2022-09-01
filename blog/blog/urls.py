@@ -35,4 +35,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('register/', register.register, name="register"),
     path('addarticle/', article.add_article),
+    path('profile/', )
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

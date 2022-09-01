@@ -17,4 +17,34 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('title', 'author', 'content', 'created_date','tag',)
+        fields = ('title', 'author', 'content', 'created_date', 'upload_file', 'tag',)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title', instance.title)
+        instance.author = validated_data.get('author', instance.author)
+        instance.content = validated_data.get('content', instance.content)
+        instance.created_date = validated_data.get('created_date', instance.created_date)
+        instance.tag = validated_data.get('tag', instance.tag)
+        return instance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
